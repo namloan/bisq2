@@ -153,7 +153,7 @@ public abstract class ApplicationService implements Service {
         checkInstanceLock();
 
         LogSetup.setup(dataDir.resolve("bisq").toString());
-        LogSetup.setLevel(Level.INFO);
+        LogSetup.setLevel(Level.DEBUG);
         log.info(AsciiLogo.getAsciiLogo());
         log.info("Data directory: {}", config.getBaseDir());
         log.info("Version: {}", config.getVersion());
