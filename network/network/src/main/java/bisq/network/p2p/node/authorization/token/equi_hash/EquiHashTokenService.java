@@ -58,11 +58,11 @@ public class EquiHashTokenService extends AuthorizationTokenService<EquiHashToke
                                 Optional<NetworkLoad> previousNetworkLoad,
                                 String connectionId,
                                 String myAddress) {
-        HashCashToken hashCashToken = (HashCashToken) authorizationToken;
-        ProofOfWork proofOfWork = hashCashToken.getProofOfWork();
+        var equihashToken = (EquiHashToken) authorizationToken;
+        var proofOfWork = equihashToken.getProofOfWork();
 
         // Verify payload
-        byte[] payload = getPayload(message);
+        var payload = getPayload(message);
         if (!Arrays.equals(payload, proofOfWork.getPayload())) {
             log.warn("Message payload not matching proof of work payload. " +
                             "getPayload(message)={}; proofOfWork.getPayload()={}; " +

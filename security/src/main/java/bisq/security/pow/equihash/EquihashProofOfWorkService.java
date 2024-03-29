@@ -35,7 +35,7 @@ public class EquihashProofOfWorkService extends ProofOfWorkService {
     /**
      * Rough cost of two Hashcash iterations compared to solving an Equihash-90-5 puzzle of unit difficulty.
      */
-    private static final double DIFFICULTY_SCALE_FACTOR = 3.0e-5;
+    private static final double DIFFICULTY_SCALE_FACTOR = 3e-4;
 
     public EquihashProofOfWorkService() {
         super();
