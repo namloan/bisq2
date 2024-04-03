@@ -35,7 +35,7 @@ public class EquihashProofOfWorkService extends ProofOfWorkService {
     /**
      * Rough cost of two Hashcash iterations compared to solving an Equihash-90-5 puzzle of unit difficulty.
      */
-    private static final double DIFFICULTY_SCALE_FACTOR = 1.75e-4;
+    private static final double DIFFICULTY_SCALE_FACTOR = 2.9e-4;
 
     public EquihashProofOfWorkService() {
         super();
@@ -48,7 +48,7 @@ public class EquihashProofOfWorkService extends ProofOfWorkService {
 
         long ts = System.currentTimeMillis();
         byte[] seed = getSeed(payload, challenge);
-        byte[] solution = new Equihash(90, 5, scaledDifficulty).puzzle(seed).findSolution().serialize();
+        byte[] solution = new Equihash(60, 3, scaledDifficulty).puzzle(seed).findSolution().serialize();
         long counter = Longs.fromByteArray(Arrays.copyOf(solution, 8));
         long duration = System.currentTimeMillis() - ts;
         var proofOfWork = new ProofOfWork(payload, counter, challenge, difficulty, solution, duration);
@@ -76,7 +76,7 @@ public class EquihashProofOfWorkService extends ProofOfWorkService {
     public boolean verify(ProofOfWork proofOfWork) {
         double scaledDifficulty = scaledDifficulty(proofOfWork.getDifficulty());
         byte[] seed = getSeed(proofOfWork.getPayload(), proofOfWork.getChallenge());
-        var puzzle = new Equihash(90, 5, scaledDifficulty).puzzle(seed);
+        var puzzle = new Equihash(60, 3, scaledDifficulty).puzzle(seed);
         return puzzle.deserializeSolution(proofOfWork.getSolution()).verify();
     }
 

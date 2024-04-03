@@ -73,7 +73,7 @@ public class EquihashTest {
 //        Puzzle solution time per unit difficulty: 19 ms
 
         double adjustedDifficulty = Equihash.adjustDifficulty(2.0);
-        Equihash equihash = new Equihash(90, 5, adjustedDifficulty);
+        Equihash equihash = new Equihash(60, 3, adjustedDifficulty);
 
         Stopwatch stopwatch = Stopwatch.createStarted();
         for (int i = 0; i < 1000; i++) {

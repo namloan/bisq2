@@ -168,7 +168,8 @@ public class EquiHashTokenService extends AuthorizationTokenService<EquiHashToke
 
     private double calculateDifficulty(EnvelopePayloadMessage message, NetworkLoad networkLoad) {
         double messageCostFactor = MathUtils.bounded(MIN_MESSAGE_COST, 1, message.getCostFactor());
-        double load = MathUtils.bounded(MIN_LOAD, 1, networkLoad.getLoad());
+        //double load = MathUtils.bounded(MIN_LOAD, 1, networkLoad.getLoad());
+        double load = 1.0;
         double difficulty = TARGET_DIFFICULTY * messageCostFactor * load * networkLoad.getDifficultyAdjustmentFactor();
         return MathUtils.bounded(MIN_DIFFICULTY, MAX_DIFFICULTY, difficulty);
     }
