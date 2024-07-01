@@ -51,7 +51,7 @@ public class EquihashTest {
 
     @Test
     public void testFindSolution() {
-        Equihash equihash = new Equihash(90, 5, 2.0);
+        Equihash equihash = new Equihash(60, 4, 2.0);
         byte[] seed = new byte[32];
         Solution solution = equihash.puzzle(seed).findSolution();
 
@@ -59,7 +59,7 @@ public class EquihashTest {
         Solution roundTrippedSolution = equihash.puzzle(seed).deserializeSolution(solutionBytes);
 
         assertTrue(solution.verify());
-        assertEquals(72, solutionBytes.length);
+        assertEquals(34, solutionBytes.length);
         assertEquals(solution.toString(), roundTrippedSolution.toString());
     }
 
@@ -72,8 +72,9 @@ public class EquihashTest {
 //        Mean time to solve one puzzle: 39 ms
 //        Puzzle solution time per unit difficulty: 19 ms
 
-        double adjustedDifficulty = Equihash.adjustDifficulty(2.0);
-        Equihash equihash = new Equihash(60, 3, adjustedDifficulty);
+        //double adjustedDifficulty = Equihash.adjustDifficulty(4);
+        double adjustedDifficulty = 1026.20517476775;
+        Equihash equihash = new Equihash(60, 4, adjustedDifficulty);
 
         Stopwatch stopwatch = Stopwatch.createStarted();
         for (int i = 0; i < 1000; i++) {
@@ -90,7 +91,7 @@ public class EquihashTest {
     }
 
     @Test
-    @Disabled
+
     public void benchmarkVerify() {
 //        On 10-core M2 Pro:
 //
@@ -98,7 +99,7 @@ public class EquihashTest {
 //        Total elapsed verification time: 11764 ms
 //        Mean time to verify one solution: 11764 ns
 
-        Equihash equihash = new Equihash(90, 5, 1.0);
+        Equihash equihash = new Equihash(60, 4, 1.0);
         byte[] seed = new byte[32];
         Solution solution = equihash.puzzle(seed).findSolution();
 
@@ -126,7 +127,7 @@ public class EquihashTest {
 //        Got expected count stats: [0 x 1364, 1 x 2717, 2 x 2707, 3 x 1797, 4 x 896, 5 x 356, 6 x 119, 7 x 33, 8 x 9, 9 x 2]
 //        Got actual count stats:   [0 x 1379, 1 x 2709, 2 x 2729, 3 x 1750, 4 x 900, 5 x 362, 6 x 119, 7 x 39, 8 x 11, 9, 10]
 
-        Equihash equihash = new Equihash(90, 5, 1.0);
+        Equihash equihash = new Equihash(60, 4, 1.0);
         byte[] seed = new byte[32];
 
         Multiset<Integer> stats = ConcurrentHashMultiset.create();
